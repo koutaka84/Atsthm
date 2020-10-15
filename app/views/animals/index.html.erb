@@ -1,0 +1,26 @@
+<h1>Animals#index</h1>
+
+<%= render "users/profile", user: @user %>
+
+<table>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>ユーザー名</th>
+			<th>gazou</th>
+			<th>caption</th>
+			<th>link</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @animals.each do |animal| %>
+			<tr>
+			  <td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
+			  <td><%= animal.user.name %></td>
+			  <td><%= attachment_image_tag animal, :image, :fill, 300, 300, format: 'jpeg' %></td>
+			  <td><span><%= animal.caption %></span></td>
+			  <td><%= link_to animal_path(animal.user) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
