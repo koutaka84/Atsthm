@@ -4,17 +4,19 @@
 <%= attachment_image_tag current_user, :profile_image, size: "50x50",format: 'jpg', fallback: "no_image.jpg" %>
 <table class="table">
 
-<tbody>
-	<tr></tr>
-<tr>
-	<th>name</th>
-  <th><%= current_user.name %></th>
-</tr>
-<tr>
-	<th>introduction</th>
-	<th><%= user %></th>
-</tr>
-<tr><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %></tr>
-<tr><%= link_to "編集", edit_user_registration_path, class: "glyphicon glyphicon-wrench edit_user_" %></tr>
-</tbody>
+  <tbody>
+		<tr></tr>
+	<tr>
+		<th>名前</th>
+	  <th><%= current_user.name %></th>
+	</tr>
+
+	<tr>
+		<td><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %></td>
+	</tr>
+	<tr>
+		<td><%= link_to "編集", edit_user_registration_path, class: "glyphicon glyphicon-wrench edit_user_" %>
+		</td>
+	</tr>
+  </tbody>
 </table>
