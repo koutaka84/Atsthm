@@ -1,2 +1,24 @@
 <h1>Animals#show</h1>
 <p>Find me in app/views/animals/show.html.erb</p>
+<div class="animals-show-item">
+        <%= @animal.content %>
+        <div class="animal-time">
+            <%= @animal.created_at %>
+        </div>
+        <%= link_to(@user.name, "http://localhost:3000/users/#{@user.id}") %>
+</div>
+
+			<th>タイトル</th>
+		    <th>説明</th>
+		    <th colspan="3"></th>
+		</tr>
+	</thead>
+		<% @animals.each do |animal| %>
+		<tr>
+			<td><%= attachment_image_tag @user, :profile_image, size: "30x30", fallback: "no_image.jpg" %></td>
+            <td><%= @user.name %></td>
+			<td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
+			<td><%= animal.caption %></td>
+			<td><%= attachment_image_tag animal, :image, :fill, 300, 300, format: 'jpeg' %></td>
+			<% end %>
+

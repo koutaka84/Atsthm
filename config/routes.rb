@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   post 'animals' => 'animals#create'
   get 'animals' => 'animals#index'
   patch 'animals/:id' => 'animals#update', as: 'update_animal'
-  root to: 'home#index'
+  root to: 'animals#index'
+  get '/users/:id/following' => 'users#follow', as:'follow'
+  get '/users/:id/followers' => 'users#follower', as:'follower'
   devise_for :users
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :animals, only: [:new, :create, :index, :show]
 
+  resources :relationships, only: [:create, :destroy]
+  post "posts/creat" => "posts#creat"
 end

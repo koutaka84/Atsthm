@@ -1,26 +1,28 @@
 <h1>Animals#index</h1>
-
 <%= render "users/profile", user: @user %>
 
 <table>
-	<thead>
-		<tr>
-			<th>名前</th>
-			<th>ユーザー名</th>
-			<th>gazou</th>
-			<th>caption</th>
-			<th>link</th>
-		</tr>
-	</thead>
 	<tbody>
 		<% @animals.each do |animal| %>
 			<tr>
+				<th>動物名</th>
 			  <td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
-			  <td><%= animal.user.name %></td>
+			</tr>
+			<tr>
+				<th>ユーザー名</th>
+			  <td><%= link_to animal.user.name,user_path(animal.user) %></td>
+			</tr>
+			<tr>
 			  <td><%= attachment_image_tag animal, :image, :fill, 300, 300, format: 'jpeg' %></td>
+			</tr>
+			<tr>
+				<th>説明</th>
 			  <td><span><%= animal.caption %></span></td>
-			  <td><%= link_to animal_path(animal.user) %></td>
+			  <td><%#= link_to animal_path(animal.user) %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
+<%= link_to :back do %>
+  <button>戻る</button>
+<% end %>
