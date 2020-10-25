@@ -1,16 +1,15 @@
-<h1>Animals#index</h1>
 <%= render "users/profile", user: @user %>
 
 <table>
 	<tbody>
 		<% @animals.each do |animal| %>
 			<tr>
-				<th>動物名</th>
-			  <td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
-			</tr>
-			<tr>
 				<th>ユーザー名</th>
 			  <td><%= link_to animal.user.name,user_path(animal.user) %></td>
+			</tr>
+			<tr>
+				<th>動物名</th>
+			  <td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
 			</tr>
 			<tr>
 			  <td><%= attachment_image_tag animal, :image, :fill, 300, 300, format: 'jpeg' %></td>
@@ -19,6 +18,15 @@
 				<th>説明</th>
 			  <td><span><%= animal.caption %></span></td>
 			  <td><%#= link_to animal_path(animal.user) %></td>
+
+
+		      <tr id="animal_<%= animal.id %>">
+		        <%= render 'likes/like', animal: animal %>
+		      </tr>
+
+		        <td><%#= link_to 'Show', post %></td>
+		        <td><%#= link_to 'Edit', edit_post_path(post) %></td>
+		        <td><%#= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 		<% end %>
 	</tbody>

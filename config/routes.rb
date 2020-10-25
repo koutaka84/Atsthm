@@ -17,4 +17,8 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   post "posts/creat" => "posts#creat"
+
+  get 'like/:id' => 'likes#create', as: 'create_like_get'
+  post 'like/:id' => 'likes#create', as: 'create_like'
+  delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
 end

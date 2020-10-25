@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :posts
 
   has_many :animals, dependent: :destroy
+
+  has_many :likes
+
   attachment :profile_image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable#, :validatable
@@ -27,4 +30,8 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
-end
+  def liked_by?(animal_id)
+    likes.where(animal_id: animal_id).exists?
+  end
+
+  end
