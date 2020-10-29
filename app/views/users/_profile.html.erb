@@ -1,32 +1,35 @@
-<h2>ユーザー</h2>
+<div id='profile'>
+	<h2>ユーザー</h2>
+	<%= attachment_image_tag current_user, :profile_image, size: "50x50",format: 'jpg', fallback: "no_image.jpg" %>
+	<table class="table profile">
 
- 
-<%= attachment_image_tag current_user, :profile_image, size: "50x50",format: 'jpg', fallback: "no_image.jpg" %>
-<table class="table">
+	  <tbody>
+		<tr>
+			<th>名前</th>
+		  	<th><%= current_user.name %></th>
+		</tr>
+		<tr>
+			<th><%= link_to '投稿', new_animal_path %></th>
+			<th></th>
+		</tr>
+		<tr>
+			<th><%= link_to ' マイページ', users_path, class: "glyphicon glyphicon-user" %></th>
+			<th></th>
+		</tr>
 
-  <tbody>
-		<tr></tr>
-	<tr>
-		<th>名前</th>
-	  <th><%= current_user.name %></th>
-	</tr>
-	<tr><td><%#= link_to "ホーム", animal_path(current_user.id) %></td></tr>
-	<tr>
-		<td><%= link_to '投稿', new_animal_path %></td>
-	</tr>
+		<tr>
+			<th><%= link_to "編集", edit_user_registration_path, class: "glyphicon glyphicon-wrench edit_user_" %></th>
+			<th></th>
+		</tr>
 
-	<tr>
-		<td><%= link_to "編集", edit_user_registration_path, class: "glyphicon glyphicon-wrench edit_user_" %></td>
-	</tr>
-
-	<tr>
-		<td>follows:<%= link_to user.followings.count,follow_path(user) %></td>
-	</tr>
-	<tr>
-		<td>followers:<%= link_to user.followers.count,follower_path(user) %></td>
-	</tr>
-
-
-
-  </tbody>
-</table>
+		<tr>
+			<th>follows:<%=  user.followings.count %></th>
+			<th></th>
+		</tr>
+		<tr>
+			<th>followers:<%= user.followers.count %></th>
+			<th></th>
+		</tr>
+	  </tbody>
+	</table>
+</div>

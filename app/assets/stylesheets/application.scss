@@ -40,3 +40,9 @@ body {
 .noline:hover {
 	text-decration:none;
 }
+#profile {
+	float: left;
+}
+.profile tr:first-child th {
+	border-top: none;
+}

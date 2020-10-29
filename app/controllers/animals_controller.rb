@@ -6,7 +6,7 @@ class AnimalsController < ApplicationController
 
   def show
     @animal = Animal.find(params[:id])
-    @animal = Animal.find_by(id: params[:id])
+    #@animal = Animal.find_by(id: params[:id])
     @user = User.find_by(id: @animal.user_id)
     @animals = @user.animals
     #@newanimal = Animal.new
@@ -42,7 +42,7 @@ class AnimalsController < ApplicationController
   def update
     @animal = Animal.find(params[:id])
     if @animal.update(animal_params)
-    redirect_to animal_path(@anima.id),notice: "You have updated book successfully."
+    redirect_to animal_path(@animal.id),notice: "アップデートに成功しました！"
     else
       render :edit
     end

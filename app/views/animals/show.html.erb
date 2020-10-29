@@ -1,24 +1,78 @@
-<h1>Animals#show</h1>
-<p>Find me in app/views/animals/show.html.erb</p>
-<div class="animals-show-item">
-        <%= @animal.content %>
-        <div class="animal-time">
-            <%= @animal.created_at %>
-        </div>
-        <%= link_to(@user.name, "http://localhost:3000/users/#{@user.id}") %>
+<div class="container">
+	<% if @animal.errors.any? %> 
+		<%= @animal.errors.count %>件のerrorが発生しました 
+		<% @animal.errors.full_messages.each do |message| %> 
+		<%= message %> 
+		<% end %> 
+	<% end %> 
+
+	<div class="container">
+		<div class="row">
+	    <% if flash[:notice] %>
+	      <p><%= flash[:notice] %></p>
+	    <% end %> 
+
+		<div class="col-xs-3">
+			<%= render "users/profile", user: @user %>
+		</div>
+
+		<div class="col-xs-9">
+			<h2>アニマル詳細</h2>
+
+	    <table class="table">
+		  <thead>
+		    <tr>
+		      <th></th>
+		      <th>タイトル</th>
+		      <th></th>
+		      <th>説明</th>
+		    </tr>
+		</thead>
+
+	  	<tbody>
+		  <tr>
+		  	<td><%= attachment_image_tag @user, :profile_image, size: "30x30", fallback: "no_image.jpg" %>
+		  		<br>
+		  		<%= link_to @animal.user.name,user_path(@animal.user.id) %>
+		    </td>
+
+		    <td><%= @animal.animal_name %></td>
+
+		    <td><%= attachment_image_tag @animal, :image, :fill, 150, 150, format: 'jpeg' %></td>
+
+		    <td><%= @animal.caption%></td>
+
+		    <td><% if current_user.liked_by?(@animal) %></td>
+			<td>
+				<%= link_to destroy_like_path(@animal),class: "like-link", method: :DELETE, remote: true do %> 
+				<i class="fa fa-heart unlike-btn"></i>
+				<% end %>
+				<%= @animal.likes.count %>
+			</td>
+				<% else %>
+			<td>
+				<%= link_to create_like_path(@animal),class: "like-link", method: :GET, remote: true do %>
+				<i class="fa fa-heart like-btn"></i>
+				<% end %>
+			 	<%= @animal.likes.count %>
+			</td>
+		<% end %>
+
+
+		    
+		  </tr>
+		</tbody>
+	</table>
+
+	<!-- <div> -->
+		<%#= link_to 'delete', [@book,comment], method: :delete %>
+	<!-- </div> -->
+
+		<%#= form_for [@book,@comment] do |f| %>
+		<%#= f.text_field :body %>
+		<%#= f.submit %>
+		<% #end %>
+  			</div>
+		</div>
+	</div>
 </div>
-
-			<th>タイトル</th>
-		    <th>説明</th>
-		    <th colspan="3"></th>
-		</tr>
-	</thead>
-		<% @animals.each do |animal| %>
-		<tr>
-			<td><%= attachment_image_tag @user, :profile_image, size: "30x30", fallback: "no_image.jpg" %></td>
-            <td><%= @user.name %></td>
-			<td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
-			<td><%= animal.caption %></td>
-			<td><%= attachment_image_tag animal, :image, :fill, 300, 300, format: 'jpeg' %></td>
-			<% end %>
-
