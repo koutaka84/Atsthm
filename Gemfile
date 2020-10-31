@@ -71,3 +71,11 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap', '~>4.4.1'
 gem 'font-awesome-sass'
+
+
+
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
