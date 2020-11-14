@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>編集 <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(@user) do |f| %>
 
@@ -7,7 +7,7 @@
 
         <h4>画像</h4>
         <%= f.attachment_field :profile_image %>
-          <%= f.submit 'Update User' %>
+          <%= f.submit '更新' %>
 <% end %>
 
-<%= link_to "Back", :back %>
+<%= link_to "戻る", :back %>

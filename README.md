@@ -5,7 +5,7 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.5.7
 
 * System dependencies
 
@@ -22,4 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-hoge
+
+
+
