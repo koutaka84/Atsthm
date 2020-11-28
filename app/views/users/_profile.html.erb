@@ -9,16 +9,16 @@
 		  	<th><%= current_user.name %></th>
 		</tr>
 		<tr>
-			<th><%= link_to '投稿', new_animal_path %></th>
+			<th><%= link_to '投稿', new_animal_path, class: "fas fa-plus-square"%></th>
 			<th></th>
 		</tr>
 		<tr>
-			<th><%= link_to ' マイページ', users_path, class: "glyphicon glyphicon-user" %></th>
+			<th><%= link_to ' マイページ', users_show_follow_path, class: "fas fa-user" %></th>
 			<th></th>
 		</tr>
 
 		<tr>
-			<th><%= link_to "編集", edit_user_registration_path, class: "glyphicon glyphicon-wrench edit_user_" %></th>
+			<th><%= link_to "編集", edit_user_registration_path, class: "fas fa-tools" %></th>
 			<th></th>
 		</tr>
 

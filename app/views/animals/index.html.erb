@@ -1,51 +1,71 @@
-
-
+<div class="container">
 <div class="row">
-	<div class="col-md-6">
-		<%= render "users/profile", user: @user %>
-	</div>
+		<div class="col-md-3">
+			<%= render "users/profile", user: @user %>
+		</div>
 
-	<div class="col-md-6">
-		<div class='animal'></div>
-		<div class="row">
-		<% @animals.each do |animal| %>
-		<div class="col-md-6">
-			<table style="width:100%">
-				<tbody>
-					<tr>
-						<td>ユーザー名</td>
-						<td><%= link_to animal.user.name,user_path(animal.user) %></td>
-					</tr>
-					<tr>
-						<td>動物名</td>
-						<td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
-					</tr>
-					<tr>
-						<td><%= attachment_image_tag animal, :image, :fill, 150, 150, format: 'jpeg' %></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>説明</td>
-						<td><%= animal.caption %></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><%#= link_to animal_path(animal.user) %></td>
-					</tr>
-					<tr id="animal_<%= animal.id %>">
-				        <%= render 'likes/like', animal: animal %>
-				        <td><%#= link_to 'Show', post %></td>
-				        <td><%#= link_to 'Edit', edit_post_path(post) %></td>
-				        <td><%#= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<% end %>
-		</div>
+		<div class="col-md-9">
+			<div class='animal'></div>
+				<div class="row">
+					<% @animals.each do |animal| %>
+						<div class="col-md-4">
+							<div class="container">
+							    <div class="row">
+							      <div class="col-lg-4">
+									<div class="card" style="width: 14rem;">
+										<%= attachment_image_tag animal.user, :profile_image, size: "30x30", fallback: "no_image.jpg" %>
+										<h4 class="card-title"><%= animal.user.name %></h4>
+										<%= attachment_image_tag animal, :image, :fill, 150, 150, format: 'jpeg', class: "card-img-top" %>
+									  <div class="card-body">
+									    <h4 class="card-title"><%= animal.animal_name %></h4>
+									    <p class="card-text"><%= animal.caption %></p>
+									    <%= link_to("投稿者詳細", animal_path(animal.id), { class: "btn btn-primary" }) %>
+									    <div id="animal_<%= animal.id %>">
+									    	<%= render 'likes/like', animal: animal %>
+									    </div>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <table style="width:100%">
+							<tbody>
+								<tr>
+									<td>ユーザー名</td>
+									<td><%= link_to animal.user.name,user_path(animal.user) %></td>
+								</tr>
+								<tr>
+									<td>動物名</td>
+									<td><%= link_to animal.animal_name,animal_path(animal.id) %></td>
+								</tr>
+								<tr>
+									<td><%= attachment_image_tag animal, :image, :fill, 150, 150, format: 'jpeg' %></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>説明</td>
+									<td><%= animal.caption %></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><%#= link_to animal_path(animal.user) %></td>
+								</tr>
+								<tr id="animal_<%= animal.id %>">
+							        <%= render 'likes/like', animal: animal %>
+							        <td><%#= link_to 'Show', post %></td>
+							        <td><%#= link_to 'Edit', edit_post_path(post) %></td>
+							        <td><%#= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+								</tr>
+							</tbody>
+						</table> -->
+					</div>
+				<% end %>
+			</div>
 	</div>
-<div class='col-md-12 back-link'>
-	<%= link_to :back do %>
-	  <button>戻る</button>
-	<% end %>
+</div>
+	<div class='col-md-12 back-link'>
+		<%= link_to :back do %>
+		  <button>戻る</button>
+		<% end %>
+	</div>
 </div>

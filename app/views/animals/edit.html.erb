@@ -1,12 +1,14 @@
 <div class="container">
-
+    <div class="col-mx-3">
+      <%= render "users/profile", user: @user %>
+    </div>
 <% if @animal.errors.any? %>
     <%= @animal.errors.count %>件のエラーが発生しました
     <% @animal.errors.full_messages.each do |message| %>
       <%= message %>
    <% end %> 
    <% end %> 
-
+<div class="left">
   <h1>投稿編集</h1>
 
   <%= form_for(@animal) do |f| %>
@@ -16,13 +18,12 @@
  
   <h4>説明</h4>
   <%= f.text_area :caption %>
-
+  <h4></h4>
   <%= f.submit 'アップデート' %>
-
   <%= link_to '詳細',animal_path %>
-<% end %>
-
-
-<%= link_to :back do %>
+  <h4></h4>
+  <%= link_to :back do %>
   <button>戻る</button>
+  <% end %>
 <% end %>
+</div>

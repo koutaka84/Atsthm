@@ -8,27 +8,37 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
-    <!-- <nav class="navbar navbar-fixed-top navbar-inverse"> -->
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <h1 class="title is-4" style="Comic Sans MS">Atsthm</h1>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarEexample1">
+<body>
+  <header>
+    <div class="">
+      <nav class="navbar navbar-fixed-top navbar-inverse">
+          <!-- <div class="collapse navbar-collapse" id="navbarEexample1"> -->
+          <ul class="nav navbar-nav list-inline logo">
+            <li><h2 class="navbar-brandtitle fab fa-evernote is-4">Atsthm</h2><span class="subtitle" style="Comic Sans MS">Animal that soothes the human mind~人の心を癒す動物</span></li>
+          </ul>
+        <!--</div> -->
+        <ul class="nav">
+          <% if user_signed_in? %>
+            <li class="nav-item">
 
-          <ul class="nav navbar-nav navbar-right">
-        <!-- (横並び) -->
-        <% if user_signed_in? %>
-
-              <li>
-                <%= link_to ' ホーム', animals_path, class: "glyphicon glyphicon-home" %>
-                </li>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
-                </li>
-
-                <% end %>
-      </ul>
+              <%= link_to 'ホーム', animals_path, class: "nav-link fas fa-home" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ユーザー一覧', users_path, class: "nav-link fas fa-users" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link fas fa-sign-out-alt" %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
-      <%= yield %>
-  </body>
+  </header>
+  <div class="main-container">
+    <%= yield %>
+  </div>
+  <footer>
+      <p class="footer-text">© All rights reserved by Infratop.Inc.</p>
+  </footer>
+</body>
 </html>

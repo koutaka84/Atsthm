@@ -1,16 +1,5 @@
 <div class="container">
-	<% if @animal.errors.any? %> 
-		<%= @animal.errors.count %>件のerrorが発生しました 
-		<% @animal.errors.full_messages.each do |message| %> 
-		<%= message %> 
-		<% end %> 
-	<% end %> 
-
-	<div class="container">
 		<div class="row">
-	    <% if flash[:notice] %>
-	      <p><%= flash[:notice] %></p>
-	    <% end %> 
 
 		<div class="col-xs-3">
 			<%= render "users/profile", user: @user %>
@@ -41,25 +30,11 @@
 		    <td><%= attachment_image_tag @animal, :image, :fill, 150, 150, format: 'jpeg' %></td>
 
 		    <td><%= @animal.caption%></td>
-
-		    <td><% if current_user.liked_by?(@animal) %></td>
-			<td>
-				<%= link_to destroy_like_path(@animal),class: "like-link", method: :DELETE, remote: true do %> 
-				<i class="fa fa-heart unlike-btn"></i>
-				<% end %>
-				<%= @animal.likes.count %>
+		    <td>
+			    <div id="animal_<%= @animal.id %>">
+					<%= render 'likes/like', animal: @animal %>
+				</div>
 			</td>
-				<% else %>
-			<td>
-				<%= link_to create_like_path(@animal),class: "like-link", method: :GET, remote: true do %>
-				<i class="fa fa-heart like-btn"></i>
-				<% end %>
-			 	<%= @animal.likes.count %>
-			</td>
-		<% end %>
-
-
-		    
 		  </tr>
 		</tbody>
 	</table>

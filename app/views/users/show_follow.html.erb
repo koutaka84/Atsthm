@@ -1,30 +1,56 @@
-<% provide(:title, @title) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "プロファイル表示", @user %></span>
-      <span><b>マイクロポスト:</b> <%= @user.microposts.count %></span>
-    </section>
-    <section>
-      <%= render 'shared/stats' %>
-      <% if @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="span8">
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-      <ul class="users">
-        <li>
-          <%= link_to @user.name, @user %>
-        </li>
-      </ul>
-      <%= will_paginate %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+
+      <section class="stats">
+        <%#= render 'users/stats' %>
+      </section>
+        <%= render "users/profile", user: @user %>
+
+    </div>
+    <div class="col-xs-9">
+      <h2>マイページ</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+        <th>ユーザーネーム</th>
+        <th>タイトル</th>
+        <th>説明</th>
+        <th></th>
+        <th colspan="3"></th>
+    </tr>
+  </thead>
+    <% @animals.each do |animal| %>
+
+    <tr>
+      <td><%= attachment_image_tag @user, :profile_image, size: "30x30", fallback: "no_image.jpg" %></td>
+            <td><%= @user.name %></td>
+
+        <td><%= attachment_image_tag animal, :image, :fill, 150, 150, format: 'jpeg' %></td>
+
+        <td><%= animal.caption%></td>
+
+
+
+        <% if @user == current_user %>
+          <td><button type="button" class="btn btn-outline-secondary fas fa-tools"><%= link_to "編集", edit_animal_path(animal.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user" %></button></td>
+        <% end %>
+        <% if @user == current_user %> 
+          <td><button type="button" class="btn btn-outline-danger fas fa-trash-alt"><%= link_to "削除",user_path(animal.id), method: :delete, "data-confirm" => "本当に削除しますか？" %> 
+              </button>
+            <% end %>
+          </td>
+    </tr>
     <% end %>
+
+</table>
+    </div>
   </div>
 </div>
+<%= link_to :back do %>
+  <button >戻る</button>
+<% end %>
+
+
+

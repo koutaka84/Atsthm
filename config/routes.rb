@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root to: 'animals#index'
   get '/users/:id/following' => 'users#follow', as:'follow'
   get '/users/:id/followers' => 'users#follower', as:'follower'
+  get '/users/show_follow' => 'users#show_follow'
   devise_for :users
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
