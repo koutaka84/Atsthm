@@ -19,7 +19,7 @@
 									  <div class="card-body">
 									    <h4 class="card-title"><%= animal.animal_name %></h4>
 									    <p class="card-text"><%= animal.caption %></p>
-									    <%= link_to("投稿者詳細", animal_path(animal.id), { class: "btn btn-primary" }) %>
+									    <%= link_to("投稿詳細", animal_path(animal.id), { class: "btn btn-primary" }) %>
 									    <div id="animal_<%= animal.id %>">
 									    	<%= render 'likes/like', animal: animal %>
 									    </div>
